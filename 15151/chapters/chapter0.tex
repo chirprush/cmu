@@ -1,0 +1,145 @@
+\Section{Chapter 0: Getting Started}{08-22-2025}
+
+We informally define some fundamental notions towards discrete mathematics and
+proofs. I won't fill in the definitions because that would be mindless typing
+of stuff I already conceptually know pretty well. Whenever I omit something,
+I'm just going to put "MS" \MarginComment{"Makes Sense"}, and the terms that are being defined will be reflected in the parentheses. Note that, because of omissions, the numbers of everything might be all over the place.
+
+\begin{definition}[proposition, truth value, true, false]
+    MS
+\end{definition}
+
+\begin{definition}[proof, theorem, lemma, corollary]
+    MS. \MarginComment{There's a typo in the textbook where lemmas are defined.}
+\end{definition}
+
+\subsection{Sets}
+
+\begin{definition}[set]
+    A \textbf{set} is a collection of objects. \MarginComment{This definition will be revised, so we'll probably get a more formal definition later.}
+\end{definition}
+
+\begin{definition}[\( \N, \Z, \Q, \R, \C \)]
+    We consider \( 0 \in \N \) in this course.
+\end{definition}
+
+\subsection{Number bases}
+
+\begin{definition}[base-\( b \) expansion]
+    We define the expansion, but we don't actually prove uniqueness.
+\end{definition}
+
+\begin{exercise}
+    Find the binary, ternary, octeal, decimal, hexadecimal, and base-\( 36 \) expansion of \( 21127 \).
+\end{exercise}
+
+\begin{solution}
+    MS. This is just an exercise to get familiar with different bases.
+\end{solution}
+
+\begin{notation}[base-\( b \) digits]
+    Instead of writing something like \( 111_2 \), we write with parentheses like \( 111_{(2)} \).
+\end{notation}
+
+\subsection{Integers and Division of Integers}
+
+\begin{definition}[divisor]
+    For \( a, b \in \Z \), \( b \mid a \) (\( b \) divides \( a \)) if there exists a \( q \in \Z \) such that \( a = qb \).
+\end{definition}
+
+\begin{exercise}
+    Prove that \( 1 \) divides every integer, and that every integer divides \( 0 \).
+\end{exercise}
+
+\begin{proof}
+    MS. This course would be nice to do in Lean4.
+\end{proof}
+
+\begin{proposition}[transitivity]
+    For \( a, b, c \in \Z \), \( a \mid b \) and \( b \mid c \) implies \( a \mid c \).
+\end{proposition}
+
+\begin{proof}
+    MS.
+\end{proof}
+
+\begin{exercise}
+    Let \( a, b, d \in \Z \). Suppose that \( d \mid a \) and \( d \mid b \). Given \( u, v \in \Z \), prove that \( d \) divides \( au + bv \).
+\end{exercise}
+
+\begin{proof}
+    Write \( a = dx, b = dy \) and observe that \( au + bv = dux + dvy = d(ux + vy) \), so \( d \mid au + bv \).
+\end{proof}
+
+\begin{blackbox}
+\begin{theorem}[division theorem for \( \Z \)]
+    Let \( a, b \in \Z \) with \( b \ne 0 \). There exist unique \( q, r \in \Z \) such that \( 0 \le r < |b| \) and
+    \[
+        a = qb + r
+    .\]
+\end{theorem}
+\end{blackbox}
+
+\begin{proposition}
+    If \( a \equiv r \pmod{b} \) then \( -a \equiv -r \pmod{b} \). \MarginComment{Although I'm using modular arithmetic notation here because I don't want to write everything out, we actually haven't defined it yet, so it does not suffice to multiply over.}
+\end{proposition}
+
+\begin{proof}
+    MS. Just apply definitions
+\end{proof}
+
+\begin{exercise}
+    Prove that if \( a \equiv r \pmod{b} \), then \( a \equiv -r \pmod{-b} \).
+\end{exercise}
+
+\begin{proof}
+    Observe that \( a = qb + r \), so \( a = (-q)(-b) + r \).
+\end{proof}
+
+\subsection{Rational, Irrational, and Reals}
+
+\begin{definition}[rational, irrational]
+    MS.
+\end{definition}
+
+\begin{exercise}
+    Let \( r \in \Q, a \in \R \setminus \Q \). Prove that it is possible that \( ra \in \Q \), and it is possible that \( ra \in \R \setminus \Q \).
+\end{exercise}
+
+\begin{proof}
+    For the first case, take \( r = 0 \), \( a = \sqrt{2} \). For the second case, take \( r = 1 \), \( a = \sqrt{2} \) (we have to be a bit careful here because we only know \( \sqrt{2} \) is irrational at this point).
+\end{proof}
+
+\begin{definition}[polynomial, root]
+    MS.
+\end{definition}
+
+\subsection{Exercises}
+
+\begin{exercise}
+    Find the natural number whose base-\( 64 \) expansion is \( \texttt{dQw4w9WgXcQ} \). Find the base-\( 64 \) expansion of the natural number \( 7159047702620056984 \).
+\end{exercise}
+
+\begin{exercise}
+    Let \( a, b, c, d \in \Z \). Under what conditions is \( (a + b\sqrt{2})(c + d\sqrt{2}) \) an integer?
+\end{exercise}
+
+\begin{proof}
+    Since \( (a + b \sqrt{2})(c + d \sqrt{2}) = ac + 2 bd + (ad + bc) \sqrt{2} \), \( ad + bc = 0 \) is the necessary and sufficient condition for the expression to be an integer.
+\end{proof}
+
+\begin{exercise}
+    Suppose an integer \( m \) leaves a remainder of \( i \) when divided by \( 3 \), and an integer \( n \) leaves a remainder of \( j \) when divided by \( 3 \). Prove that \( m + n \) and \( i + j \) leave the same remainder when divided by \( 3 \).
+\end{exercise}
+
+\begin{proof}
+    Write \( m = 3x + i, n = 3y + j \). Then, \( m + n = 3(x + y) + i + j \). Write \( i + j = 3q + r \) so that the remainder when \( i + j \) is divided by \( 3 \) is \( r \). We may see that \( m + n = 3(x + y + q) + r \), and \( 0 \le r < 3 \), so the remainder when \( m + n \) is divided by \( 3 \) is \( r \). Thus, the two sums have the same remainder.
+\end{proof}
+
+\begin{exercise}
+    What are the possible remainders of \( n^2 \) when divided by \( 3 \), where \( n \in \Z \)?
+\end{exercise}
+
+\begin{proof}
+    Just go casewise on \( 3k, 3k + 1, 3k + 2 \) and find their remainder buckaroo.
+\end{proof}
