@@ -1,0 +1,239 @@
+\Section{Lecture 2}{08-27-25}
+
+Although some statements look obvious, we must prove the ones that aren't
+direct axioms. Consider the following theorem.
+
+\begin{theorem}
+    Let \( V \) be a \( K \)-vector space. For all \( \vec{v} \in V \), \( 0 \cdot \vec{v} = \vec{0} \).
+\end{theorem}
+
+\begin{proof}
+    Observe that, for all \( \vec{v} \in V \),
+    \begin{align*}
+        0 \vec{v} &= (0 + 0) \vec{v} \\
+        &= 0 \vec{v} + 0 \vec{v} \tag{distributivity}
+    \end{align*}
+    Adding over the additive inverse, we have that,
+    \begin{align*}
+        0 \vec{v} - 0 \vec{v} &= 0 \vec{v} + 0 \vec{v} - 0 \vec{v} \\
+        \vec{0} &= 0\vec{v} + \vec{0} \tag{additive inverse} \\
+        \vec{0} &= 0 \vec{v} \tag{additive identity}
+    .\end{align*}
+    Which proves what we want.
+\end{proof}
+
+An erroneous proof would be considering \( (1 - 1) \vec{v} = \vec{v} - \vec{v}
+= 0 \). This is subtle, but it fails because we have not yet proven that \(
+(-1) \vec{v} = -\vec{v} \). We shall prove this later on the homework. Note that we will take certain statements for granted and be less pedantic throughout notes and lecture, but (especially at the start) the homework should contain solutions that are more pedantic and verbose.
+
+We shall now get into linear combinations and lists of vectors.
+
+\begin{definition}[list]
+    Over a \( K \)-vector space \( V \), a \textit{list} of vectors \( \mathcal{L} \) of length \( k \) is an ordered pair \( (\vec{v}_1, \vec{v}_2, \ldots, \vec{v}_k) \).
+\end{definition}
+
+\begin{definition}[linear combination, represents]
+    Over a \( K \)-vector space \( V \) and given a list \( \mathcal{L} = (\vec{v}_1, \vec{v}_2, \ldots, \vec{v}_k) \) of vectors, a \textit{linear combination of \( \mathcal{L} \)} is any sum
+    \[
+        \sum_{i = 1}^{k} a_i \vec{v}_i = a_1 \vec{v}_1 + a_2 \vec{v}_2 + \cdots + a_k \vec{v}_k
+    ,\]
+    for \( a_1, a_2, \ldots, a_k \in K \).
+
+    We say that a linear combination \textit{represents} \( \vec{w} \) if
+    \[
+        \vec{w} = \sum_{i = 1}^{k} a_i \vec{v}_i
+    .\]
+\end{definition}
+
+\begin{example}
+    For example, let
+    \begin{align*}
+        \mathcal{L}_1 &= \left\{ \begin{pmatrix} 1 \\ 0 \end{pmatrix}, \begin{pmatrix} 0 \\ 1 \end{pmatrix} \right\} \subset \R^2 \\
+        \mathcal{L}_2 &= \left\{ \begin{pmatrix} 0 \\ 0 \end{pmatrix}, \begin{pmatrix} 1 \\ -1 \end{pmatrix}, \begin{pmatrix} - \pi, \pi \end{pmatrix} \right\} \subset \R^2
+    .\end{align*}
+    Over \( \mathcal{L}_1 \), we have the representation
+    \[
+        \begin{pmatrix}
+            5 \\ 3
+            \end{pmatrix} = 5 \begin{pmatrix} 1 \\ 0 \end{pmatrix} + 3 \begin{pmatrix} 0 \\ 1 \end{pmatrix}
+    ,\]
+    but the same vector does not have a representation in \( \mathcal{L}_2 \).
+\end{example}
+
+\begin{definition}
+    Over a \( K \)-vector space \( V \), the \textit{span} of a list \(
+    \mathcal{L} \), denoted \( \Span(\mathcal{L}) \), is the set of all vectors
+    \( \vec{w} \in V \) that can be represented as linear combinations of \(
+    \mathcal{L} \).
+\end{definition}
+
+We remark that the span of an empty list is valid and equal to the singleton
+set containing the zero vector.
+
+\begin{claim}[example span of \( \mathcal{L}_1 \)]
+    We claim that \( \Span(\mathcal{L}_1) = \R^2 \).
+\end{claim}
+
+\begin{proof}
+    It suffices to show that \( \Span(\mathcal{L}_1) \subseteq \R^2 \) and \( \R^2 \subseteq \Span(\mathcal{L}_1) \).
+    \begin{itemize}
+        \item \textbf{To Show: \( \Span(\mathcal{L}_1) \subseteq \R^2 \).} This is obvoiusly true by closure of operations (one can be more explicit by writing out the general linear combination and showing that all entries are real).
+        \item \textbf{To Show: \( \R^2 \subseteq \Span(\mathcal{L}_1) \).} Let \( \vec{v} \in \R^2 \). Then, we can write for some \( v_1, v_2 \in \R \)
+            \[
+                \vec{v} = \begin{pmatrix}
+                    v_1 \\ v_2
+                \end{pmatrix} =
+                v_1 \begin{pmatrix} 1 \\ 0 \end{pmatrix} +
+                v_2 \begin{pmatrix} 0 \\ 1 \end{pmatrix}
+            ,\]
+            so \( \vec{v} \) is clearly in the span.
+    \end{itemize}
+\end{proof}
+
+\begin{claim}[example span of \( \mathcal{L}_2 \)]
+    Denote by \( X \) the set
+    \[
+        X := \left\{ \begin{pmatrix} x \\ -x \end{pmatrix} {\Big \vert} \, x \in \R \right\}
+    .\]
+    We claim that \( \Span(\mathcal{L}_2) = X \).
+\end{claim}
+
+\begin{proof}
+    Once again, we shall show that \( \Span(\mathcal{L}_2) \subseteq X \) and
+    \( X \subseteq \Span(\mathcal{L}_2) \).
+    \begin{itemize}
+        \item \textbf{To Show: \( \Span(\mathcal{L}_2) \subseteq X \).} Let \( \vec{v} \in \Span(\mathcal{L}_2) \) so that we can write for some \( a, b, c \in \R \)
+            \[
+                \vec{v} = a \cdot \begin{pmatrix}
+                    0 \\ 0
+                \end{pmatrix} +
+                b \cdot \begin{pmatrix}
+                    1 \\ -1
+                \end{pmatrix} +
+                c \cdot \begin{pmatrix}
+                    -\pi \\ \pi
+                \end{pmatrix} =
+                \begin{pmatrix}
+                    b - \pi c \\
+                    \pi c - b
+                \end{pmatrix} =
+                \begin{pmatrix}
+                    x \\ -x
+                \end{pmatrix}
+            ,\]
+            for \( x = b - \pi c \). Thus, \( \vec{v} \in X \).
+        \item \textbf{To Show: \( X \subseteq \Span(\mathcal{L}_2) \).} Let \( \vec{v} \in X \). Then, we can write for some \( x \in \R \)
+            \[
+                \vec{v} = \begin{pmatrix}
+                    x \\ -x
+                \end{pmatrix} =
+                0 \cdot \begin{pmatrix}
+                    0 \\ 0
+                \end{pmatrix} +
+                x \cdot \begin{pmatrix}
+                    1 \\ -1
+                \end{pmatrix} +
+                0 \cdot \begin{pmatrix}
+                    -\pi \\ \pi
+                \end{pmatrix}
+            ,\]
+            so \( \vec{v} \) is clearly in the span.
+    \end{itemize}
+\end{proof}
+
+Notice that, in \( \mathcal{L}_1 \), there was only one choice that we could
+have made to write any arbitrary vector in the span as a linear combination,
+but there were multiple choices in \( \mathcal{L}_2 \). This motivates the following definition.
+
+\begin{definition}[independent, dependent]
+    Over a \( K \)-vector space \( V \), we say a list \( \mathcal{L} \) is
+    \textit{independent}, or \textit{linearly indpendent}, if each vector in \(
+    \Span(\mathcal{L}) \) has a unique representation as a linear combination
+    of \( \mathcal{L} \). If \( \mathcal{L} \) is not independent, we say that
+    \( \mathcal{L} \) is \textit{dependent} or \textit{linearly dependent}.
+\end{definition}
+
+\begin{claim}[example \( \mathcal{L}_1 \) independent]
+    We claim that \( \mathcal{L}_1 \) is linearly independent.
+\end{claim}
+
+\begin{proof}
+    \textcolor{red}{Copy from notes.}
+\end{proof}
+
+\begin{claim}[example \( \mathcal{L}_2 \) not independent]
+    We claim that \( \mathcal{L}_2 \) is dependent.
+\end{claim}
+
+\begin{proof}
+    \textcolor{red}{Copy from notes.}
+\end{proof}
+
+We have this handy theorem for checking independence quickly.
+
+\begin{theorem}
+    Over a \( K \)-vector space \( V \), a list \( \mathcal{L} = (\vec{v}_1, \vec{v}_2, \ldots, \vec{v}_k) \) is independent iff \( \vec{0} \in V \) has only the trivial representation
+    \[
+        \vec{0} = 0 \vec{v}_1 + 0 \vec{v}_2 + \cdots + 0 \vec{v}_k
+    .\]
+\end{theorem}
+
+\begin{proof}
+    Let \( P \) denote the proposition that \( \mathcal{L} \) is independent and \( Q \) the proposition that \( \vec{0} \) has only the trivial representation. We shall prove that \( P \imp Q \) and \( Q \imp P \).
+    \begin{itemize}
+        \item \textbf{To Show: \( P \imp Q \).} Because \( \mathcal{L} \) is independent, every \( \vec{v} \in \Span(\mathcal{L}) \) has a unique representation, so \( \vec{0} \in \Span(\mathcal{L}) \) has a unique representation.
+        \item \textbf{To Show: \( Q \imp P \).} We shall prove the contrapositive, \( \lnot P \imp \lnot Q \). That is, we shall prove that \( \mathcal{L} \) is dependent implies that \( \vec{0} \) has a non-unique representation. Because \( \mathcal{L} \) is dependent, there exists some \( \vec{v} \in \Span(\mathcal{L}) \) that has a non-unique representation. That is, we can write
+            \begin{align*}
+                \vec{v} &= a_1 \vec{v}_1 + a_2 \vec{v}_2 + \cdots + a_k \vec{v}_k \\
+                &= b_1 \vec{v}_1 + b_2 \vec{v}_2 + \cdots + b_k \vec{v}_k
+            ,\end{align*}
+            for some \( a_1, a_2, \ldots, a_k, b_1, b_2, \ldots, b_k \in K \) where \( a_i \ne b_i \) for some \( i \in \{1, 2, \ldots, k\} \).
+            We can subtract these two representations to get
+            \[
+                \vec{0} = (a_1 - b_1) \vec{v}_1 + (a_2 - b_2) \vec{v}_2 + \cdots + (a_k - b_k) \vec{v}_k
+            .\]
+            Because there is some \( i \) such that \( a_i \ne b_i \), we have two representations of \( \vec{0} \), which is what we wished to prove.
+    \end{itemize}
+\end{proof}
+
+\begin{theorem}
+    Over an \( \F \)-vector space \( V \), a list \( \mathcal{L} = (\vec{v}_1,
+    \ldots, \vec{v}_k) \) is dependent if there exists a \( j \in \{1, \ldots,
+    k\} \) such that \( \vec{v}_j \) is a linear combination of \( \vec{v}_1, \ldots, \vec{v}_{j-1} \).
+\end{theorem}
+
+\begin{proof}
+    Let \( P \) be the proposition that \( \mathcal{L} \) is dependent, and let
+    \( Q \) be the proposition that \( \vec{v}_j \) can be written in such a
+    linear combination. We shall prove that \( P \imp Q \) and \( Q \imp P \).
+    \begin{itemize}
+        \item \textbf{To Show: \( P \imp Q \).} By the previous theorem, \( P \) implies that there is some representation of \( \vec{0} \) as
+            \[
+                \vec{0} = \alpha_1 \cdot \vec{v}_1 + \cdots + \alpha_k \vec{v}_k
+            ,\]
+            where \( \alpha_i \ne 0 \) for at least one \( i \) (i.e. the
+            representation is nontrivial). Choose the largest \( j \) such that
+            \( \alpha_j \ne 0 \) so we can write
+            \[
+                \vec{0} = \alpha_1 \cdot \vec{v}_1 + \cdots + \alpha_j \vec{v}_j
+            .\]
+            Since \( \alpha_j \ne 0 \), it has an inverse, so it then follows that
+            \[
+                \vec{v}_j = -\frac{\alpha_1}{\alpha_j} \vec{v}_1 - \cdots - \frac{\alpha_{j-1}}{\alpha_j} \vec{v}_{j-1}
+            ,\]
+            so there exists some \( j \in \{1, \ldots, k \} \) such that \(
+            \vec{v}_j \) is a linear combination of \( \vec{v}_1, \ldots,
+            \vec{v}_{j-1} \).
+        \item \textbf{To Show: \( Q \imp P \).} It is given that
+            \[
+                \vec{v}_j = \alpha_1 \cdot \vec{v}_1 + \cdots + \alpha_{j-1} \vec{v}_{j-1} + 0 \cdot \vec{v}_j + \cdots + 0 \vec{v}_k
+            ,\]
+            for some \( \alpha_1, \ldots, \alpha_{j-1} \in \F \). In addition, however,
+            \[
+                \vec{v}_j = 0 \cdot \vec{v}_1 + \cdots + 0 \cdot \vec{v}_{j-1} + 1 \cdot \vec{v}_j + 0 \cdot \vec{v}_{j + 1} + \cdots + 0 \cdot \vec{v}_{k}
+            .\]
+            Since \( \vec{v}_j \) has two distinct representations as a linear
+            combination of \( \mathcal{L} \), it follows that \( \mathcal{L} \)
+            is dependent.
+    \end{itemize}
+\end{proof}

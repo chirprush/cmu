@@ -1,0 +1,77 @@
+\Section{Lecture 1}{08-25-2025}
+
+\begin{definition}[field]
+    A \textit{field} \( K \) is a set with the binary operations
+    \begin{align*}
+        +_K &: K \times K \to K, \\
+        \cdot_K &: K \times K \to K
+    \end{align*}
+    that satisfy certain axioms below. When the context of the underlying field is clear, we will denote these simply by \( +, \cdot \).
+    \begin{enumerate}
+        \item \( +, \cdot \) are closed. \MarginComment{This is actually
+            probably implied by them being binary operations with the above
+            signature, but I'll leave it here as this is how it was written in
+            recitation. In general, it should be fine if you put it above or in the axioms.}
+        \item \( +, \cdot \) are associative. That is, for all \( a, b, c \in K \), \( (a + b) + c = a + (b + c) \).
+        \item \( +, \cdot \) are commutative. That is, for all \( a, b \in K \), \( a + b = b + a \) and \( a \cdot b = b \cdot a \).
+        \item There exist elements \( 0, 1 \in K \) with \( 0 \ne 1 \) such that for all \( a \in K \), \( a + 0 = a \) and \( a \cdot 1 = a \).
+        \item For all \( a \in K \), there exists a \( b \in K \) such that \( a + b = 0 \). We will denote \( b \) by \( -a \).
+        \item For all \( a \in K \setminus \{ 0 \} \), there exists a \( b \in K \) such that \( a \cdot b = 1 \). We shall denote \( b \) by \( a^{-1} \).
+        \item For all \( a, b, c \in K \), we have that \( a \cdot (b + c) = a \cdot b + a \cdot c \).
+    \end{enumerate}
+\end{definition}
+
+\begin{example}
+    Some common fields are \( \Q, \R, \C, \F_q \)\MarginComment{Many fields arise from constructions with rings. In particular, one can construct any finite field by taking some quotient of a finite field polynomial ring with an irreducible ideal}. Once must note that the choice of \( +, \cdot \) is important. \( \R^n \) with \( n > 1 \) and pointwise multiplication does not form a field (zero divisors), but specifically \( \R^2 \) with a specific kind of multiplication forms a field (but this is just isomorphic to the complex numbers).
+\end{example}
+
+\begin{definition}[vector space]
+    A \( K \)-\textit{vector space} (i.e. a vector space over \( K \)) is a set \( V \) with operations \MarginComment{We typically call \( \cdot_V \) the scalar product. When it's clear from context, we may drop this symbol entirely a la normal multiplication.}
+    \begin{align*}
+        +_V &: V \times V \to V, \\
+        \cdot_V &: K \times V \to V
+    \end{align*}
+    that satisfy the axioms below. Once again, we shall drop the subscript with appropriate context.
+    \begin{enumerate}
+        \item \( +, \cdot \) are closed.
+        \item \( +, \cdot \) is associative.
+        \item \( + \) is commutative.
+        \item There exists a \( \vec{0} \in V \)\MarginComment{We denote vectors in bold face.} such that \( \vec{0} + \vec{u} = \vec{u} \) for all \( \vec{u} \in V \).
+        \item For all \( \vec{v} \in V \) there exists an additive inverse \( \vec{u} \) (we may denote this with \( -\vec{v} \)), such that \( \vec{v} + \vec{u} = \vec{0} \).
+        \item For all \( \vec{v} \in V \), \( 1 \cdot \vec{v} = \vec{v} \).
+        \item For all \( a, b \in K \) and \( \vec{v} \in V \), \( (a \cdot_K b) \cdot_V \vec{v} = a \cdot_V (b \cdot_V \vec{v}) \).
+        \item For all \( a \in K \) and \( \vec{u}, \vec{v} \in V \), \( a \cdot (\vec{u} + \vec{v}) = a \cdot \vec{u} + b \cdot \vec{v} \).
+        \item For all \( a, b \in K \) and \( \vec{v} \in V \), \( (a + b) \cdot \vec{v} = a \cdot \vec{v} + b \cdot \vec{v} \).
+    \end{enumerate}
+\end{definition}
+
+\begin{example}
+    Some intuitive examples are \( K^d \) (including \( d = 1 \)), \( K[X] \),
+    and any ring where we forget element multiplication structure. A cool
+    example is \( \R \) being a vector space over \( \Q \) (see Hamel bases).
+    Another cute example is the vector space of continuous functions \( f : [0, 1] \to \R \) such that
+    \[
+        \int_{0}^{1} f(x) \, dx = 0
+    ,\]
+    because integrals are linear.
+\end{example}
+
+\begin{proposition}[unique additive identity]
+    Let \( V \) be a vector space with additive identity \( \vec{0} \). We have that \( \vec{0} \) is unique.
+\end{proposition}
+
+\begin{proof}
+    BWOC, suppose there exists additive identities \( \vec{0}_1, \vec{0}_2 \) with \( \vec{0}_1 \ne \vec{0}_2 \). Let \( \vec{v} \in V \). Consider that
+    \[
+        \vec{0}_1 + \vec{v} = \vec{v} = \vec{0}_2 + \vec{v}
+    .\]
+    Adding \( -\vec{v} \) onto both the LHS and the RHS yields
+    \[
+        \vec{0}_1 + \vec{v} - \vec{v} = \vec{0}_2 + \vec{v} - \vec{v}
+    .\]
+    By vector space axiom \textbf{5.} and \textbf{3.}, we can cancel to get
+    \[
+        \vec{0}_1 + \vec{0}_1 = \vec{0}_1 + \vec{0}_2
+    .\]
+    Simplifying with vector space axiom \textbf{4.} yields \( \vec{0}_1 = \vec{0}_2 \), which is a contradiction. Thus, the additive identity in a vector space is unique.
+\end{proof}

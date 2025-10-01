@@ -1,0 +1,55 @@
+\Section{Lecture 3}{08-29-25}
+
+\begin{theorem}
+    Let \( V \) be an \( \F \)-vector space. For any list \( \mathcal{L} \) in
+    \( V \), \( \mathcal{L} \) contains a sublist \( \mathcal{L}' \) that satisfies
+    \begin{enumerate}
+        \item \( \Span(\mathcal{L}) = \Span(\mathcal{L}') \), and
+        \item \( \mathcal{L}' \) is linearly independent.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    It suffices to consider the case in which \( \mathcal{L} \) is dependent
+    (if not then \( \mathcal{L}' = \mathcal{L} \)). Let \( \mathcal{L}' \) be a
+    smallest sublist of \( \mathcal{L} \) whose span is \( \Span(\mathcal{L})
+    \) (we are picking from a nonempty set because \( \mathcal{L} \) is in the
+    set, so this sublist must exist even if not uniquely). We claim that \(
+    \mathcal{L}' \) is independent.
+
+    \textcolor{blue}{(Informal) Suppose not, so \( \mathcal{L}' \) is dependent. Then, by the previous theorem, there is a vector in \( \mathcal{L}' \) that's a linear combination of its preceding vectors. If we throw away this vector, we achieve a smaller sublist with the same span, which violates the fact that \( \mathcal{L}' \) was the smallest}
+\end{proof}
+
+\begin{lemma}
+    Suppose \( \mathcal{L} = (\vec{v}_1, \ldots, \vec{v}_k) \) and that vectors \( \vec{w}_1, \ldots, \vec{w}_\ell \in \Span(\mathcal{L}) \). Then, \( \Span(\vec{w}_1, \ldots, \vec{w}_\ell) \subseteq \Span(\mathcal{L}) \).
+\end{lemma}
+
+\begin{proof}
+    \textcolor{blue}{Just write each \( \vec{w}_i \) as a linear combination of \( \mathcal{L} \). Then, linear combinations are in the span as well.}
+\end{proof}
+
+\begin{definition}
+    A \textit{basis} for an \( \F \)-vector space \( V \) is a list \( \mathcal{B} \) of vectors such that every vector in \( V \) can be written uniquely as a linear combination of \( \mathcal{B} \).
+\end{definition}
+
+\begin{definition}
+    If \( \mathcal{B} \) is a basis of length \( k \) for an \( \F \)-vector
+    space \( V \), then any \( \vec{v} \in V \) can be written uniquely as
+    \[
+        \vec{v} = \sum_{i = 1}^k \alpha_i \cdot \vec{v}_i
+    ,\]
+    for \( \alpha_1, \ldots, \alpha_k \in \F \) that depend on \( \vec{v} \). We define a function \( [\cdot]_{\mathcal{B}} : V \to \F^k \) so that
+    \[
+        [\vec{v}]_{\mathcal{B}} = \begin{pmatrix}
+            \alpha_1 \\ \alpha_2 \\ \vdots \\ \alpha_k
+        \end{pmatrix}
+    .\]
+\end{definition}
+
+\begin{theorem}
+    \( [\cdot]_{\mathcal{B}} \) is a linear transformation.
+\end{theorem}
+
+\begin{proof}
+    
+\end{proof}

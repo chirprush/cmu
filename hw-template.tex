@@ -1,0 +1,58 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{chirpstyle}
+
+\usepackage{fancyhdr}
+
+\newcommand{\name}{Rushil Surti}
+\newcommand{\andrewid}{rsurti}
+\newcommand{\hwnum}{1}
+\newcommand{\classid}{15-151}
+\newcommand{\sectionid}{B}
+
+\begin{document}
+
+\pagestyle{empty}
+
+\begin{center}
+    {\Large \textbf{\classid\ \sectionid: HW \hwnum}}
+
+    \vspace{-0.3cm}
+
+    {\large Rushil Surti (\texttt{\andrewid})}
+\end{center}
+
+\vspace{-1cm}
+\noindent\rule{\textwidth}{0.5pt}
+\vspace{0.3cm}
+
+\begin{blackbox}
+    \begin{question}
+        This is the first question.
+    \end{question}
+\end{blackbox}
+
+\begin{solution}
+    This is the first solution
+\end{solution}
+
+\newpage
+
+\fancyhead{}
+\fancyhead[L]{\textbf{HW \hwnum} (Q.\arabic{qnum})}
+\fancyhead[C]{\classid\ \sectionid}
+\fancyhead[R]{\name\ (\texttt{\andrewid})}
+
+\pagestyle{fancy}
+
+\begin{blackbox}
+    \begin{question}
+        This is the second question
+    \end{question}
+\end{blackbox}
+
+\begin{solution}
+    This is the second solution.
+\end{solution}
+
+\end{document}

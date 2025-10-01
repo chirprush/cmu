@@ -1,0 +1,53 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{chirpstyle}
+
+\begin{document}
+
+\section*{Midterm 1}
+
+Problem \( 5 \) is false guys.
+
+\begin{blackbox}
+    \begin{problem}[4]
+        Let \( A \) be an \( m \times n \) matrix over \( \F \) whose columns span \( \F^m \). Prove that \( T_A \) is surjective.
+    \end{problem}
+\end{blackbox}
+
+\begin{proof}
+    Always go back to definitions. We want \( T_A \) to be surjective so, given
+    any \( \vec{y} \in \F^m \), we want a \( \vec{x} \in \F^n \) so that \( A
+    \vec{x} = \vec{y} \).
+\end{proof}
+
+\begin{blackbox}
+    \begin{problem}
+        \( T : V \to W, S : W \to X \) linear transformations. \( T \) is surjective and \( S \) is invertible. Must \( S \circ T \) be surjective? Must \( S \circ T \) be injective?
+    \end{problem}
+\end{blackbox}
+
+\begin{solution}
+    Just go back to definitions.
+
+    \( S \circ T \) is surjective. Let \( \vec{x} \in X \). We shall show that there is some vector \( \vec{v} \in V \) such that \( (S \circ T)(\vec{v}) = \vec{x} \). Since \( S \) is bijective, there exists some \( \vec{w} \in W \) such that \( S(\vec{w}) = \vec{x} \). Since \( T \) is surjective, there exists some \( \vec{v} \in V \) such that \( T(\vec{v}) = \vec{w} \). Thus, \( S(T(\vec{w})) = \vec{x} \).
+
+    \( S \circ T \) is not necessarily injective. Take \( V = \R \) and \( W = \{ \vec{0} \} \). Let \( T(\vec{x}) = 0 \) for all \( \vec{x} \) so \( T \) is surjective. Take \( S \) to be the identity. Then we have that \( S(T(1)) = S(T(2)) = 0 \).
+\end{solution}
+
+\begin{blackbox}
+    \begin{problem}[8]
+        Let \( T : V \to W \) be a bijective linear transformation. Let \( S : W \to V \) be a left-inverse for \( T \). Prove that \( S \) is also a right-inverse for \( T \).
+    \end{problem}
+\end{blackbox}
+
+\begin{solution}
+    Since \( T \) has a right inverse, call it \( R \).
+    \[
+        R = (S \circ T) \circ R = S \circ (T \circ R) = S
+    .\]
+    Boom
+\end{solution}
+
+
+
+\end{document}

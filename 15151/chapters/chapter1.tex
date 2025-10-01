@@ -1,0 +1,66 @@
+\Section{Chapter 1: Logical Structure}{08-22-2025}
+
+This chapter largely covers basic logic and breaking up propositions into
+smaller logical components and formulae.
+
+\subsection{Propositional Logic}
+
+When writing our proof, we have assumptions and goals. Write out the
+assumptions (quantifications and other conditions that are given in the
+statement of the exercise/theorem we are proving), and use them to prove the
+goal.
+
+\begin{definition}[propositional variable]
+    A \textit{propositional variable} is a symbol that represents a
+    proposition (i.e. it can be true or false).
+\end{definition}
+
+\begin{definition}[propositional formula]
+    A \textit{propositional formula} is an expression built up from propositional variables and logical operators that is valid. \MarginComment{Not really a formal definition.}
+\end{definition}
+
+We have the following logical operators:
+\begin{itemize}
+    \item \textbf{Conjunction (AND):} \( \land \) (prove both are true)
+    \item \textbf{Disjunction (OR):} \( \lor \) (prove either one is true)
+    \item \textbf{Implication:} \( \imp \) (assume left and prove right is true)
+    \item \textbf{Biimplication:} \( \iiff \) (prove forward and back)
+    \item \textbf{Negation:} \( \lnot \) (proof by contradiction)
+\end{itemize}
+
+Keep in mind that we are being cognizant of the law of excluded middle. \MarginComment{My TA said we didn't have to use this for basic things though so it's not like I'm going to have to cite this every time.}
+
+\subsection{Variables and Quantifiers}
+
+Understand the notion of free and bound variables.
+
+\begin{definition}[predicate]
+    A \textit{predicate} is a symbol \( p \) with free variables where we specify the range of each free variable.
+\end{definition}
+
+\begin{example}
+    Let \( p(x) \) be the predicate that "\( x \) is divisible by \( 7 \)" where \( x \in \Z \). We have that \( p(28) \) is true and \( p(3) \) is false.
+\end{example}
+
+We also have the quantifiers
+\begin{itemize}
+    \item \textbf{Forall:} \( \forall \) (prove holds for arbitrary element in set)
+    \item \textbf{Exists:} \( \exists \) (give an element for which it works)
+    \item \textbf{Exists Unique:} \( \exists! \) (prove it exists and prove it is unique)
+\end{itemize}
+
+\begin{definition}[logical formula]
+    A logical formula is an expression that is built from predicates, logical operators, and quantifiers, having free and/or bound variables.
+\end{definition}
+
+\subsection{Logical Equivalence}
+
+\begin{definition}
+    Let \( p, q \) be logical formulae. We say \( p \) and \( q \) are logically equivalent (\( p \equiv q \)) if \( p \) can be derived from \( q \) and \( q \) can be derived from \( p \).
+\end{definition}
+
+\begin{theorem}
+    Two propositional formulae are logically equivalent iff they agree under all truth assignments.
+\end{theorem}
+
+This gets into truth tables. We also have De Morgan's laws, the contrapositive, and some other nice goodies.
