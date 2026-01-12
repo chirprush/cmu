@@ -1,0 +1,404 @@
+\Section{Matrices and Systems of Equations}{}
+
+\subsection{Matrix Properties}
+
+\begin{definition}
+    Let \( V, W \) be \( \F \)-vector spaces with respective bases \(
+    \mathcal{B}, \mathcal{C} \), where \( \mathcal{B} = (\vec{v}_1, \ldots, \vec{v}_n) \). Then, for a linear transformation \( T : V \to
+    W \), define \( [T]_{\mathcal{C} \mathcal{B}} \in \F^{|C| \times |B|} \) to
+    be the matrix of entries in \( \F \) (with \( |C| \) rows and \( |B| \)
+    columns) where
+    \[
+        [T]_{\mathcal{C} \mathcal{B}} = \begin{pmatrix}
+            \vline & \vline & & \vline \\
+            [T(\vec{v}_1)]_{\mathcal{C}} & [T(\vec{v}_2)]_{\mathcal{C}} & \cdots & [T(\vec{v}_n)]_{\mathcal{C}} \\
+            \vline & \vline & & \vline
+        \end{pmatrix}
+    .\]
+\end{definition}
+
+\begin{definition}
+    Let \( A \in \F^{m \times n} \), and let \( \vec{x} \in \F^n \). Then,
+    define the product \( A \vec{x} \in \F^m \) via
+    \[
+        A \vec{x} = \sum_{i = 1}^{n} \alpha_i \vec{v}_i
+    ,\]
+    where \( \vec{v}_i \) are the columns of \( A \) and
+    \[
+        \vec{x} = \begin{pmatrix}
+            \alpha_1 \\ \alpha_2 \\ \vdots \\ \alpha_n
+        \end{pmatrix}
+    .\]
+\end{definition}
+
+\begin{theorem}
+    With the definition of matrix multiplication above, \(
+    [T(\vec{x})]_{\mathcal{C}} = [T]_{\mathcal{C} \mathcal{B}}
+    [\vec{x}]_{\mathcal{B}} \).
+\end{theorem}
+
+\begin{proof}
+    With \( \vec{x} \) written as above, we have that
+    \begin{align*}
+        [T]_{\mathcal{C} \mathcal{B}} [\vec{x}]_{\mathcal{B}} &= \sum_{i = 1}^{n} \alpha_i [T(\vec{v}_i)]_{\mathcal{C}} \\
+        &= \left[ \sum_{i = 1}^{n} \alpha_i T(\vec{v}_i) \right]_{\mathcal{C}} \\
+        &= [ T(\vec{x}) ]_{\mathcal{C}}
+    .\end{align*}
+\end{proof}
+
+\begin{definition}
+    Given matrices \( A \in \F^{m \times n} \), \( B \in \F^{n \times \ell} \),
+    \[
+        A = \begin{pmatrix}
+            \vline & \vline & & \vline \\
+            \vec{a}_1 & \vec{a}_2 & \cdots & \vec{a}_n \\
+            \vline & \vline & & \vline
+        \end{pmatrix}, \quad
+        B = \begin{pmatrix}
+            \vline & \vline & & \vline \\
+            \vec{b}_1 & \vec{b}_2 & \cdots & \vec{b}_\ell \\
+            \vline & \vline & & \vline
+        \end{pmatrix}
+    ,\]
+    we define the product \( AB \in \F^{m \times \ell} \) via
+    \[
+        AB = \begin{pmatrix}
+            \vline & \vline & & \vline \\
+            A \vec{b}_1 & A \vec{b}_2 & \cdots & A \vec{b}_\ell \\
+            \vline & \vline & & \vline
+        \end{pmatrix}
+    .\]
+\end{definition}
+
+\begin{theorem}
+    Let \( U, V, W \) be \( \F \)-vector spaces, with bases \( \mathcal{A},
+    \mathcal{B}, \mathcal{C} \) respectively of length \( \ell, n, m \). Let \(
+    S : U \to V, T : V \to W \) be linear transformations. Then,
+    \[
+        [T \circ S]_{\mathcal{C} \mathcal{A}} = [T]_{\mathcal{C} \mathcal{B}} [S]_{\mathcal{B} \mathcal{A}}
+    ,\]
+    where matrix multiplication is defined as above.
+\end{theorem}
+
+\begin{proof}
+    Observe that
+    \begin{align*}
+        [T]_{\mathcal{C} \mathcal{B}} [S]_{\mathcal{B} \mathcal{A}} &= \begin{pmatrix}
+            \vline & \vline & & \vline \\
+        [T]_{\mathcal{C} \mathcal{B}} [S(\vec{a}_1)]_{\mathcal{B}} & [T]_{\mathcal{C} \mathcal{B}} [S(\vec{a}_2)]_{\mathcal{B}} & \cdots & [T]_{\mathcal{C} \mathcal{B}} [S(\vec{a}_\ell)]_{\mathcal{B}} \\
+            \vline & \vline & & \vline
+        \end{pmatrix} \\
+        &= \begin{pmatrix}
+            \vline & \vline & & \vline \\
+        [(T \circ S)(\vec{a}_1)]_{\mathcal{C}} & [(T \circ S)(\vec{a}_2)]_{\mathcal{C}} & \cdots & [(T \circ S)(\vec{a}_\ell)]_{\mathcal{C}} \\
+            \vline & \vline & & \vline
+        \end{pmatrix} \\
+        &= [T \circ S]_{\mathcal{C} \mathcal{A}}
+    .\end{align*}
+\end{proof}
+
+\begin{theorem}
+    For fixed \( m, n \), \( \F^{m \times n} \) is an \( \F \)-vector space via pointwise addition and scalar multiplication
+\end{theorem}
+
+\begin{proof}
+    Not interesting.
+\end{proof}
+
+\begin{theorem}
+    For \( U, V \) as \( \F \)-vector spaces, the set \( \mathcal{L}(U, V) \)
+    of linear transformations from \( U \) to \( V \) is an \( \F \)-vector
+    space with function addition and multiplication.
+\end{theorem}
+
+\begin{proof}
+    Not interesting.
+\end{proof}
+
+\begin{theorem}
+    Moreover, we have that \( [\cdot]_{\mathcal{C} \mathcal{B}} :
+    \mathcal{L}(V, W) \to \F^{|W|\times|V|} \) is a (bijective) linear transformation.
+\end{theorem}
+
+\begin{proof}
+    Not very fun or interesting.
+\end{proof}
+
+\begin{definition}
+    For a matrix \( A \in \F^{m \times n} \), we denote by \( T_A : \F^n \to
+    \F^m \) the linear transformation corresponding to \( A \). That is, \(
+    T_A(\vec{x}) = A \vec{x} \).
+\end{definition}
+
+\begin{theorem}
+    Matrix multiplication is associative and distributive (for suitable sizes).
+\end{theorem}
+
+\begin{proof}
+    Use the fact that linear transformations are a vector space and matrices
+    correspond directly to linear transformations.
+\end{proof}
+
+\subsection{Inverses}
+
+\begin{definition}
+    Given \( T: U \to V, S : V \to U \) linear transformations,
+    \begin{itemize}
+        \item \( S \) is called a left inverse of \( T \) if \( S \circ T = \id_U \).
+        \item \( S \) is called a right inverse of \( T \) if \( T \circ S =
+            \id_V \).
+        \item \( S \) is a two sided inverse (or just inverse) if \( S \) is
+            both a left and right inverse.
+    \end{itemize}
+
+    We have similar statements for matrices.
+\end{definition}
+
+\begin{theorem}
+    If \( T \) has a left inverse and a right inverse, then each is a two sided
+    inverse. Moreover, they are the same linear transformations.
+\end{theorem}
+
+\begin{proof}
+    Suppose \( T : U \to V \) with left inverse \( S_L : V \to U \) and right
+    inverse \( S_R : V \to U \). Then, we have that
+    \[
+        S_L \circ \id_V = S_L \circ (T \circ S_R) = (S_l \circ T) \circ S_R =
+        \id_U \circ T = S_R
+    ,\]
+    as desired.
+\end{proof}
+
+\begin{definition}
+    When a linear transformation \( T \) has a two sided inverse, we call it \(
+    T^{-1} \) and say \( T \) is invertible.
+\end{definition}
+
+\begin{theorem}
+    If \( S, T \) are invertible, then \( S \circ T \) is invertible.
+\end{theorem}
+
+\begin{proof}
+    Obvious.
+\end{proof}
+
+One should be able to give examples of spaces and linear transformations with
+two sided, only left, and only right sided inverses.
+
+\begin{definition}
+    Given a linear transformation \( T : U \to V \), define the kernel and
+    image via the following:
+    \begin{align*}
+        \Ker(T) &:= \{ \vec{u} \in V : T(\vec{u}) = \vec{0}_V \}, \\
+        \Im(T) &:= \{ \vec{v} \in V : \exists \vec{u} \in U, T(\vec{u}) = \vec{v} \}
+    .\end{align*}
+    We define the same for matrices. The kernel of a matrix is also sometimes
+    called the null space. The image of a matrix is also sometimes called the column space.
+\end{definition}
+
+\subsection{Gaussian Elimination}
+
+\begin{definition}
+    For a matrix \( A \in \F^{m \times n} \), we define \( \RREF(A) \) to be
+    the matrix achieved via the following process (called Gaussian elimination).
+    \begin{enumerate}
+        \item Find the leftmost column with a nonzero entry in an unpivoted
+            row.
+        \item Swap rows to make this first unpivoted row.
+        \item Multiply the row by a nonzero scalar to make this nonzero entry
+            \( 1 \) and call it a pivot.
+        \item Subtract multiples of this row to zero out entries of newly
+            pivoted columns.
+        \item Repeat.
+    \end{enumerate}
+\end{definition}
+
+Note that the row reduced echelon form can have zeroed out columns at the
+start!
+
+\begin{theorem}
+    The matrix defined by this process is unique.
+\end{theorem}
+
+\begin{proof}
+    Diabolical and not so insightful.
+\end{proof}
+
+Observe the following:
+\begin{enumerate}
+    \item Each row and each column of a row reduced echelon form contains at
+        most one pivot. Moreover, if there's a pivot in row \( j \), then it is
+        strictly to the right of any pivot in rows \( i < j \). Any other
+        entries in a pivots column must be zero.
+    \item All rows after pivot rows are zero rows.
+\end{enumerate}
+
+\begin{theorem}
+    For any \( A \in \F^{m \times n} \), there is an invertible matrix \( G \in
+    \F^{m \times m} \) such that \( \RREF(A) = GA \).
+\end{theorem}
+
+\begin{proof}
+    Any Gaussian elimination process is synonymous with applying elementary row
+    operation matrices on the left of \( A \). Since each of these elementary
+    row operations are invertible, we have that \( G \) is invertible.
+\end{proof}
+
+\begin{theorem}
+    Row equivalent matrices are still row equivalent upon removing correpsonding columns.
+\end{theorem}
+
+\begin{proof}
+    Just use the definition of matrix multiplication.
+\end{proof}
+
+\begin{definition}
+    The rank of a matrix \( A \), denoted by \( \Rank(A) \), is the number of pivots in \( \RREF(A) \).
+\end{definition}
+
+Observe that row reduction preserves solution sets.
+
+\subsection{Fundamental Theorems}
+
+We now state the three fundamental theorems of linear algebra.
+
+\begin{theorem}
+    Suppose \( A \in \F^{m \times n} \), so that \( T_A : \F^n \to \F^m \). The
+    following are equivalent.
+    \begin{enumerate}
+        \item \( T_A \) is injective.
+        \item For all \( y \in \F^m \) the system \( A\vec{x} = \vec{y} \) has
+            \( \le 1 \) solution.
+        \item The columns of \( A \) are independent.
+        \item \( \Ker(T_A) = \{ \vec{0} \} \) (trivial kernel).
+        \item \( T_A \) has a left inverse.
+        \item \( \Rank(A) = n \).
+    \end{enumerate}
+    Moreover, these imply that \( n \le m \) (thin matrix).
+\end{theorem}
+
+\begin{proof}
+    Observe that \textbf{1.} through \textbf{4.} are all easily definitionally
+    equivalent.
+
+    We can easily prove that \textbf{6.} is equivalent to \textbf{2.}. Indeed,
+    \textbf{2.} implies \textbf{6.} via contrapositive (using RREF one may
+    construct a nontrivial zero solution). Moreover, \textbf{6.} implies
+    \textbf{2.}, because without free variables the values of the variables are
+    forced by the pivots.
+
+    We can then show that \textbf{6.} implies \textbf{5.} via construction of a
+    left inverse matrix for the RREF. Obviously, \textbf{5.} implies \textbf{1.} by functions.
+\end{proof}
+
+\begin{theorem}
+    Suppose \( A \in \F^{m \times n} \), so that \( T_A : \F^n \to \F^m \). The
+    following are equivalent.
+    \begin{enumerate}
+        \item \( T_A \) is surjective.
+        \item For all \( y \in \F^m \), the system \( A\vec{x} = \vec{y} \) has
+            \( \ge 1 \) solutions.
+        \item The columns of \( A \) span \( \F^m \).
+        \item \( \Im(A) = \F^m \).
+        \item \( T_A \) has a right inverse.
+        \item \( \Rank(A) = m \).
+    \end{enumerate}
+    Moreover, these imply that \( n \ge m \) (fat matrix).
+\end{theorem}
+
+\begin{proof}
+    Observe that \textbf{1.} through \textbf{4.} are all easily definitionally
+    equivalent.
+
+    We can easily prove that \textbf{6.} is equivalent to \textbf{2.}. We see that
+    \textbf{2.} implies \textbf{6.} via contrapositive. Consider the system \(
+    A \vec{x} = G^{-1} \vec{e} \), where \( \vec{e} \) is a vector of all ones
+    and \( G \) is the matrix of composed elementary row operations. Then,
+    since there are zero rows in \( \RREF(A) \), we cannot have a solution.
+    Moreover, \textbf{6.} implies \textbf{2.}, because we can make all the
+    coefficients of the pivot variables match the solution vector and set the
+    free variable coefficients to zero.
+
+    We can then show that \textbf{6.} implies \textbf{5.} via construction of a
+    right inverse matrix for the RREF. Obviously, \textbf{5.} implies
+    \textbf{1.} by functions.
+\end{proof}
+
+\begin{theorem}
+    Suppose \( A \in \F^{m \times n} \), so that \( T_A : \F^n \to \F^m \). The
+    following are equivalent.
+    \begin{enumerate}
+        \item \( T_A \) is bijective.
+        \item For all \( \vec{y} \in \F^m \), the system \( A \vec{x} = \vec{y}
+            \) has exactly one solution.
+        \item Columns of \( A \) are basis for \( \F^m \).
+        \item \( \Ker(T_A) \) is trivial and \( \Im(T_A) = \F^m \).
+        \item \( T_A \) has a two sided inverse.
+        \item \( \Rank(A) = n = m \).
+    \end{enumerate}
+    This, implies \( n = m \).
+\end{theorem}
+
+\begin{proof}
+    These results just follow from the previous two theorems combined.
+    Optionally, we can show that \textbf{1.} is equivalent to \textbf{5.} via
+    elementary means.
+\end{proof}
+
+\subsection{Application of Fundamental Theorems}
+
+\begin{theorem}
+    Suppose \( \mathcal{B}, \mathcal{C} \) are bases of \( V \) an \( \F
+    \)-dimensional vector space. Then, \( |\mathcal{B}| = |\mathcal{C}| \).
+\end{theorem}
+
+\begin{proof}
+    Consider the matrix \( A = [\id_V]_{\mathcal{B} \mathcal{C}} \), and observe
+    since \( T_A = \id_V \) is bijective, \( |\mathcal{B}| = |\mathcal{C}| \).
+\end{proof}
+
+\begin{theorem}
+    Any invertible matrix \( A \) can be written as the product of elementary matrices.
+\end{theorem}
+
+\begin{proof}
+    Row reduce \( A \) to the identity matrix.
+\end{proof}
+
+\begin{definition}
+    Let \( V \) be a vector space with basis \( \mathcal{B} \). Then, since all
+    bases of \( V \) are the same size, define \( \dim(V) = |\mathcal{B}| \). If no basis of \( V \) exists, then \( \dim(V) = \infty \).
+\end{definition}
+
+\begin{theorem}
+    Let \( \vec{v}_1, \ldots, \vec{v}_k \) be a list of independent vectors in \( V \), where \( \dim(V) = d \). Then,
+    \begin{enumerate}
+        \item \( k \le d \), and
+        \item If \( k = d \), then \( \vec{v}_1, \ldots, \vec{v}_k \) is a basis of \( V \).
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    Put the vectors in a matrix and apply FTLA.
+\end{proof}
+
+\begin{theorem}
+    If \( \dim(V) = d < \infty \), then any independent list \( \vec{v}_1,
+    \ldots, \vec{v}_k \) can be extended to a basis of \( V \).
+\end{theorem}
+
+\begin{proof}
+    We know that \( k \le d \) by the previous theorem. Moreover, if \( k = d
+    \), we're done. Suppose \( k < d \), so \( \vec{v}_1, \ldots, \vec{v}_k \)
+    is independent but not spanning \( V \). Thus, there exists some vector \(
+    \vec{x} \in V \setminus \Span(\vec{v}_1,\ldots, \vec{v}_k) \). We claim
+    that \( \vec{v}_1, \ldots, \vec{v}_k, \vec{x} \) is indepedent. BWOC
+    suppose it is dependent. Then,
+    \[
+        \alpha_1 \vec{v}_1 + \cdots + \alpha_n \vec{v}_n + \beta \vec{x} = 0
+    ,\]
+    and since \( \vec{v}_1, \ldots, \vec{v}_k \) are independent, \( \beta \ne
+    0 \). Thus, \( \vec{x} \in \Span(\vec{v}_1, \ldots, \vec{v}_k) \), but this
+    is a contradiction by construction. Thus, set \( \vec{v}_{k+1} = \vec{x} \)
+    and continue this process to achieve the desired theorem.
+\end{proof}

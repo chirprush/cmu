@@ -1,0 +1,89 @@
+\Section{Projections}{}
+
+\begin{definition}
+    In an \( \F \)-inner product space \( V \), \( \vec{u}, \vec{v} \in V \) are said to be orthogonal if \( \inner{\vec{u}}{\vec{v}} = 0 \). We write \( \vec{u} \perp \vec{v} \).
+\end{definition}
+
+\begin{definition}
+    A list \( \mathcal{L} \) of vectors is orthogonal if all pairs of vectors
+    are orthogonal.
+\end{definition}
+
+\begin{theorem}
+    If \( \mathcal{L} \) is an orthogonal list of nonzero vectors, then \(
+    \mathcal{L} \) is linearly independent.
+\end{theorem}
+
+\begin{definition}
+    A list \( \mathcal{O} = (\vec{v}_1, \ldots, \vec{v}_n) \) is orthonormal if it is orthogonal and \( \norm{\vec{v}_i} = 1 \) for all \( i \).
+\end{definition}
+
+\begin{theorem}
+    If \( \mathcal{O} = (\vec{w}_1, \ldots, \vec{w}_n) \) is orthonormal and \(
+    x \in \Span(\mathcal{O}) \), then \( \vec{x} \) is uniquely
+    \[
+        \vec{x} = \sum_{i = 1}^{n} \inner{\vec{x}}{\vec{w}_i} \vec{w}_i
+    .\]
+\end{theorem}
+
+\begin{definition}
+    Given an orthonormal list \( \mathcal{O} = (\vec{w}_1, \ldots, \vec{w}_k)
+    \), we define the projection of a vector \( \vec{x} \) onto \( \mathcal{O} \) by
+    \[
+        \Proj_{\mathcal{O}}(\vec{x}) := \sum_{i = 1}^{k} \inner{\vec{x}}{\vec{w}_i} \vec{w}_i
+    .\]
+\end{definition}
+
+\begin{theorem}
+    The projection \( \Proj_{\mathcal{O}} (\vec{x}) \) satisfies the following:
+    \begin{enumerate}
+        \item If \( x \in \Span(\mathcal{O}) \), then \( \Proj_{\mathcal{O}}(\vec{x}) = \vec{x} \).
+        \item \( \Proj_{\mathcal{O}}(\vec{x}) \in \Span(\mathcal{O}) \).
+        \item \( \inner{\vec{x} - \Proj_{\mathcal{O}}(\vec{x})}{\vec{w}_i} = 0 \) for all \( \vec{w}_i \in \mathcal{O} \).
+    \end{enumerate}
+\end{theorem}
+
+\begin{theorem}[HW]
+    The projection is a linear transformation.
+\end{theorem}
+
+To address the well-definedness of the projection onto (more generally) a
+subspace, we have the following theorems:
+
+\begin{theorem}
+    In an \( \F \)-inner product space \( V \), for any list \( \mathcal{L} \) there is an orthonormal list \( \mathcal{O} \) with \( \Span(\mathcal{L}) = \Span(\mathcal{O}) \).
+\end{theorem}
+
+The construction used in the above theorem is called the Gram-Schmidt
+orthogonalization process.
+
+\begin{theorem}
+    For \( \vec{z} \in W \), where \( \mathcal{O} = (\vec{w}_1, \ldots, \vec{w}_k) \)
+    is an orthonormal basis for \( W \), \( \vec{z} = \Proj_{\mathcal{O}}(\vec{v}) \)
+    iff for all \( \vec{w} \in W \),
+    \[
+        \norm{\vec{v} - \vec{z}} \le \norm{\vec{v} - \vec{w}}
+    .\]
+    In other words,
+    \[
+        \argmin_{\vec{w} \in W} \norm{\vec{v} - \vec{w}} = \Proj_{\mathcal{O}}(\vec{v})
+    .\]
+\end{theorem}
+
+\begin{theorem}
+    For \( z \in W \), where \( \mathcal{O} = (\vec{w}_1, \ldots, \vec{w}_k) \) is an orthonormal basis for \( W \),  \( \vec{z} = \Proj_{\mathcal{O}}(\vec{v}) \) iff for all \( \vec{w} \in W \),
+    \[
+        \inner{\vec{v} - \vec{z}}{\vec{w}} = 0
+    .\]
+\end{theorem}
+
+\begin{theorem}
+    Let \( \F^n \) be an inner product space with inner product taken to be the
+    dot product. Then for \( \mathcal{O} = (\vec{w}_1, \ldots, \vec{w}_k) \) an
+    orthonormal list in \( \F^n \),
+    \[
+        A A^* \vec{v} = \Proj_{\mathcal{O}}(\vec{v})
+    .\]
+\end{theorem}
+
+Remember the formula \( A^* A \vec{x} = A^* \vec{b} \) for linear regression.

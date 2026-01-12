@@ -1,7 +1,4 @@
-# CMU
-
-My Class of 2029 SCS CMU notes and resources. See my blog for more in-depth
-personal commentary sometime (when I get to it).
+# Current Courses
 
 **Fall 2025:**
 
@@ -20,3 +17,13 @@ personal commentary sometime (when I get to it).
 - 80-315: Logics for Knowledge and Belief
 - 76-101: Interpretation and Argument
 - 98-179: Introduction to Japanese Mahjong
+
+Potential Future Courses:
+
+- 10-202: Introduction to Modern AI (Geared towards general audience so maybe
+  not)
+- 21-325: Probability Theory -> Seriously consider this versus PnC
+- 15-210: Parallel and Sequential Data Structures and Algorithms
+- 11-485/11-785: Introduction to Deep Learning -> Hmmm maybe look at reviews
+- 33-211: Physics III and Modern Essentials
+

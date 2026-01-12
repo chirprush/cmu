@@ -1,0 +1,113 @@
+\Section{Subspaces}{}
+
+\subsection{Basic Notions}
+
+\begin{definition}
+    Given an \( \F \)-vector space \( V \), a subset \( W \) of \( V \) is a
+    subspace if \( W \) is an \( \F \)-vector space with same operations as \(
+    V \) restricted to \( W \).
+\end{definition}
+
+\begin{theorem}
+    A subset \( W \) of \( V \) is a subspace iff
+    \begin{enumerate}
+        \item \( W \) is closed under linear combinations of vectors in \( W \).
+        \item \( \vec{0}_V \in W \).
+    \end{enumerate}
+    In particular, \( W \) is nonempty.
+\end{theorem}
+
+\begin{proof}
+    Just check the axioms.
+\end{proof}
+
+\begin{theorem}
+    Given \( T : V \to W \) a linear transformation, \( \Ker(T) \) is a subspace of \( V \) and \( \Im(T) \)  is a subspace of \( W \).
+\end{theorem}
+
+\begin{proof}
+    It's kinda obvious.
+\end{proof}
+
+\begin{theorem}
+    If \( W \) is a subspace of \( V \), then \( \dim(W) \le \dim(V) \).
+\end{theorem}
+
+\begin{proof}
+    Suppose \( \dim(V) = d \). BWOC \( \dim(W) > d \), so we can find a list of
+    \( d + 1 \) linearly independent vectors in \( W \) by the previous
+    extension theorem. However, this contradicts a previous theorem that the
+    length of any independent list is less than or equal to \( d \).
+\end{proof}
+
+\subsection{Rank-Nullity}
+
+\begin{theorem}
+    A linear transformation \( T: V \to W \) (where \( V \) is of finite
+    dimension \( d \)) is injective iff \( \dim(\Im(T)) = \dim(V) \).
+\end{theorem}
+
+\begin{proof}
+    We shall prove the forward direction first. Suppose \( T \) injective and
+    let \( \vec{v}_1, \ldots, \vec{v}_d \) be a basis of \( V \). Let \(
+    \vec{w}_i = T(\vec{v}_i) \) for \( i \in \{1, \ldots, d \} \). We claim
+    that \( \vec{w}_1, \ldots, \vec{w}_d \) is a basis for \( \Im(T) \).
+    Indeed, the list spans because if \( \vec{y} \in \Im(T) \), then \( \vec{y}
+    = T(\vec{x}) \) for \( x \in V \). Since \( \vec{x} \) is a linear
+    combination of \( \vec{v}_1, \ldots, \vec{v}_d \), \( \vec{y} \) is a
+    linear combination of \( \vec{w}_1, \ldots, \vec{w}_d \). We now show that
+    the list is independent. Suppose
+    \[
+        \alpha_1 \vec{w}_1 + \cdots + \alpha_d \vec{w}_d = \vec{0}_{W}
+    .\]
+    Then, we have that
+    \[
+        T(\alpha_1 \vec{v}_1 + \cdots + \alpha_d \vec{v}_d) = \vec{0}_{W}
+    ,\]
+    and since \( T \) is injective and \( \vec{v}_1, \ldots, \vec{v}_d \) is a
+    basis it follows that \( \alpha_1 = \cdots = \alpha_d = 0 \).
+
+    Now we shall show the backward direction. Suppose \( \dim(\Im(T)) = \dim(V)
+    = d \); we shall show that \( T \) has trivial kernel (equivalent via
+    FTLA). Then, there exists some basis \( \vec{w}_1, \ldots, \vec{w}_d \) of
+    \( \Im(T) \). Since \( \vec{w}_i \in \Im(T) \) we may choose some \(
+    \vec{v}_i \) such that \( T(\vec{v}_i) = \vec{w}_i \). We claim that \(
+    \vec{v}_1, \ldots, \vec{v}_d \) is a basis for \( V \). Clearly \(
+    \vec{v}_1, \ldots, \vec{v}_d \) are independent because \( \vec{w}_1,
+    \ldots, \vec{w}_d \) is a basis (set linear combination to zero and apply
+    \( T \) to get coefficients to be all zero). Thus, by FTLA, it is a basis.
+    Now, consider any \( x \in V \) such that \( T(\vec{x}) = \vec{0} \). Since
+    \( \vec{v}_i \) form a basis, we may write
+    \[
+        \vec{x} = \sum_{i = 1}^{n} \alpha_i \vec{v}_i
+    ,\]
+    and so since \( T(\vec{x}) = \vec{0} \) and \( \vec{w}_i \) form a basis,
+    \( \alpha_1 = \cdots \alpha_d = 0 \), so \( \vec{x} = \vec{0} \).
+\end{proof}
+
+\begin{theorem}
+    Let \( A \in \F^{m \times n} \). Then, \( \dim(\Im(T_A)) = \Rank(A) \).
+\end{theorem}
+
+\begin{proof}
+    Let \( A' = \RREF(A) \), and observe that the pivot columns of \( A' \) are
+    a basis for the columns of \( A' \). Thus, \( \Rank(A) = \dim(\Im(T_{A'}))
+    \). Note that \( A' = GA \) for some invertible \( G \), so \( \Im(T_A) =
+    T_{G^{-1}} [\Im(T_{A'})] \). Since \( T_{G^{-1}} \) is a linear
+    isomorphism, it preserves dimension of a vector space, so we have that \(
+    \Rank(A) = \dim(\Im(T_A)) \).
+\end{proof}
+
+\begin{theorem}
+    Let \( T : V \to W \) be a linear transformation with \( \dim(V), \dim(W) <
+    \infty \). Then, \( \dim(\Ker(T)) + \dim(\Im(T)) = \dim(V) \).
+\end{theorem}
+
+\begin{proof}
+    Let \( \mathcal{B}, \mathcal{C} \) be respective bases for \( V, W \).
+    Using the RREF picture, we can construct a basis for \(
+    \Ker(\RREF([T]_{\mathcal{C} \mathcal{B}})) =  \Ker([T]_{\mathcal{C}
+    \mathcal{B}}) \) of size \( |B| - \Rank([T]_{\mathcal{C} \mathcal{B}}) =
+    |B| - \dim(\Im(T)) \). Thus, \( \dim(\Im(T)) + \dim(\Ker(T)) = |B| =
+    \dim(V) \).
+\end{proof}

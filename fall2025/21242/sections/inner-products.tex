@@ -1,0 +1,175 @@
+\Section{Inner Products}{}
+
+\subsection{Basic Notions and Inequalities}
+
+Recall that the dot product in \( \C^n \) has a conjugate on the second term.
+
+\begin{definition}
+    Given an \( \F \)-vector space \( V \) for \( \F = \R \) or \( \F = \C \),
+    we call a map \( \inner{\cdot, \cdot} : V \times V \to \F \) if it satisfies
+    \begin{enumerate}
+        \item \textbf{Conjugate Symmetry:} \( \inner{\vec{v}, \vec{w}} = \overline{\inner{\vec{w}, \vec{v}}} \).
+        \item \textbf{Sesquilinearity:} \( \inner{\alpha \vec{v} + \beta
+            \vec{w}, \vec{z}} = \alpha \inner{\vec{v}, \vec{z}} + \beta
+            \inner{\vec{w}, \vec{z}} \).
+        \item \textbf{Non-negativity:} \( \inner{\vec{v}, \vec{v}} \ge 0 \).
+        \item \textbf{Positive-definiteness:} \( \inner{\vec{v}, \vec{v}} = 0
+            \) implies \( \vec{v} = \vec{0} \).
+    \end{enumerate}
+\end{definition}
+
+Don't forget that linearity doesn't hold fully in the second term (it holds up
+to a conjugate of any coefficients you pull out).
+
+\begin{definition}
+    Given an inner product space \( V \), define the norm of a vector \( \vec{v} \) by
+    \[
+        \norm{\vec{v}} := \inner{\vec{v}, \vec{v}}^{1/2}
+    .\]
+\end{definition}
+
+\begin{theorem}
+    In any inner product space \( V \), we have that
+    \[
+        |\inner{\vec{v}, \vec{u}}| \le \norm{\vec{v}} \norm{\vec{u}}
+    .\]
+\end{theorem}
+
+\begin{proof}
+    It suffices to consider the case when \( \norm{\vec{u}} = 1 \) (if \(
+    \vec{u} = \vec{0} \) then the inequality trivially holds, and otherwise we
+    can scale). Then, define \( s = \inner{\vec{v}, \vec{u}} \). Observe that
+    \begin{align*}
+        0 &\le \inner{\vec{v} - s \vec{u}, \vec{v} - s \vec{u}} \\
+        &= \inner{\vec{v}, \vec{v}} - s \inner{\vec{u}, \vec{v}} - \overline{s} \inner{\vec{v}, \vec{u}} + s \overline{s} \inner{\vec{u}, \vec{u}} \\
+        &= \inner{\vec{v}, \vec{v}} - s \overline{s} - \overline{s} \inner{\vec{v}, \vec{u}} + s \overline{s} \\
+        &= \norm{\vec{v}}^2 - |\inner{\vec{v}, \vec{u}}|^2
+    ,\end{align*}
+    and taking the square root gives us as desired.
+\end{proof}
+
+\begin{theorem}
+    In any inner product space \( V \),
+    \[
+        \norm{\vec{u} + \vec{v}} \le \norm{\vec{u}} + \norm{\vec{v}}
+    .\]
+\end{theorem}
+
+\begin{proof}
+    It suffices to show that the square of the inequality holds. Do a bunch of
+    inner product stuff and utilize the fact that a number plus its conjugate
+    is real so we can apply complex triangle inequality and then use Cauchy-Schwarz.
+\end{proof}
+
+\subsection{Projections}
+
+\begin{definition}
+    In an \( \F \)-inner product space, vectors \( \vec{u}, \vec{v} \) are said
+    to be orthogonal (written \( \vec{u} \perp \vec{v} \)) if \(
+    \inner{\vec{u}, \vec{v}} = 0 \).
+\end{definition}
+
+\begin{definition}
+    A list \( \mathcal{L} \) is an orthogonal list of vectors if its
+    vectors are all pairwise orthogonal.
+\end{definition}
+
+\begin{theorem}
+    If \( \mathcal{L} \) is an orthogonal list of nonzero vectors (important),
+    then \( \mathcal{L} \) is independent.
+\end{theorem}
+
+\begin{proof}
+    Extract the coefficients via inner products and argue that the inner
+    product is nonzero so the coefficient is zero.
+\end{proof}
+
+\begin{definition}
+    A list \( \mathcal{O} \) is orthonormal if it is an orthogonal list of unit
+    vectors.
+\end{definition}
+
+\begin{theorem}
+    An orthonormal list of vectors is independent.
+\end{theorem}
+
+\begin{proof}
+    By above.
+\end{proof}
+
+\begin{theorem}
+    If \( \mathcal{O} = (\vec{w}_1, \ldots, \vec{w}_k) \) is orthonormal and \( \vec{x} \in \Span(\mathcal{O}) \), then \( \vec{x} \) is uniquely
+    \[
+        \vec{x} = \sum_{i = 1}^{k} \inner{\vec{x}, \vec{w}_i} \vec{w}_i
+    .\]
+\end{theorem}
+
+\begin{proof}
+    Since \( \vec{x} \) is in the span, we can write it as some linear
+    combination. Using dot products, we have that the coefficients must be
+    given by the inner products.
+\end{proof}
+
+\begin{definition}
+    Given an orthonormal list \( \mathcal{O} = (\vec{w}_1, \ldots, \vec{w}_k) \), define the projection of a vector \( \vec{x} \) onto \( \mathcal{O} \) via
+    \[
+        \Proj_{\mathcal{O}}(\vec{x}) = \sum_{i = 1}^{k} \inner{\vec{x}, \vec{w}_i} \vec{w}_i
+    .\]
+\end{definition}
+
+Observe the following:
+\begin{enumerate}
+    \item Notice if \( \vec{x} \in \Span(\mathcal{O}) \) Then \( \Proj_{\mathcal{O}} (\vec{x}) = \vec{x} \).
+    \item \( \Proj_{\mathcal{O}}(\vec{x}) \in \Span(\mathcal{O}) \).
+    \item \( \inner{\vec{x} - \Proj_{\mathcal{O}} (\vec{x}), \vec{w}_i} = 0 \) for all \( i \).
+\end{enumerate}
+
+\begin{theorem}
+    In \( V \) an \( \F \)-IPS, for any list \( \mathcal{L} \), there is an orthonormal \( \mathcal{O} \) such that \( \Span(\mathcal{O}) = \Span(\mathcal{L}) \).
+\end{theorem}
+
+\begin{proof}
+    Gram-Schmidt. Induction (on the size of list) and define vector as usual.
+    Show that it spans.
+\end{proof}
+
+\begin{theorem}
+    Let \( \mathcal{O} = (\vec{w}_1, \ldots, \vec{w}_k) \) be an orthonormal
+    list and denote \( W = \Span(\mathcal{O}) \) (where \( W \subseteq V \)).
+    For \( \vec{z} \in W \), \( \vec{z} = \Proj_{\mathcal{O}}(\vec{v}) \) iff
+    for all \( \vec{w} \in W \),
+    \[
+        \norm{\vec{v} - \vec{z}} \le \norm{\vec{v} - \vec{w}}
+    .\]
+    In other words, the projection is the closest point to \( \vec{v} \) in \( W \).
+\end{theorem}
+
+\begin{proof}
+    Decompose \( \vec{v} - \vec{w} = (\vec{v} - \vec{z}) + (\vec{z} - \vec{w})
+    \) and use the fact that these two vectors are orthogonal. Then, trivial
+    inequality. Thus, if there were another minimizer they would be the same.
+\end{proof}
+
+\begin{theorem}
+    For \( \vec{z} \in W \), \( \vec{z} = \Proj_{\mathcal{O}}(\vec{v}) \) iff for all \( \vec{w} \in W \),
+    \[
+        \inner{\vec{v} - \vec{z}, \vec{w}} = 0
+    .\]
+\end{theorem}
+
+\begin{proof}
+    Follows simply from projection properties.
+\end{proof}
+
+\begin{theorem}
+    If \( A \in \F^{n \times k} \) and the columns of \( A \), \( \mathcal{O} = (\vec{v}_1,
+    \ldots, \vec{v}_k) \), are an orthonormal list, then
+    \[
+        A A^* \vec{v} = \Proj_{\mathcal{O}} (\vec{v})
+    ,\]
+    for the standard inner product.
+\end{theorem}
+
+\begin{proof}
+    Use that \( \inner{\vec{v}, \vec{w}} = \vec{w}^* \vec{v} \).
+\end{proof}

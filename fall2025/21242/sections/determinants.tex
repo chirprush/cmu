@@ -1,0 +1,194 @@
+\Section{Determinants}{}
+
+\subsection{Basic Notions}
+
+\begin{definition}
+    The determinant \( \det : \F^{n \times n} \to \F \) is the unique map satisfying the following:
+    \begin{enumerate}
+        \item \textbf{Normalization:} \( \det(I_n) = 1 \).
+        \item \textbf{Alternating:} \( \det(\vec{v}_1, \ldots, \vec{v}_n) = 0
+            \) if \( \vec{v}_i = \vec{v}_j \) for some \( i \ne j \).
+        \item \textbf{Multilinearity:} We have that
+            \[
+                \det(\vec{v}_1, \ldots, \vec{v}_j
+            \ldots, \vec{v}_n) = \alpha\det(\vec{v}_1, \ldots, \vec{x}, \ldots,
+            \vec{v}_n) + \beta\det(\vec{v}_1, \ldots, \vec{y}, \ldots,
+            \vec{v}_n)
+            ,\]
+            where \( \vec{v}_j = \alpha \vec{x} + \beta \vec{y} \).
+    \end{enumerate}
+\end{definition}
+
+Note that antisymmetry (swapping two vectors yields a negative of the
+determinant), is not strong enough when considering \( \F = \F_2 \).
+
+\begin{theorem}
+    Let \( A \in \F^{n \times n} \). We have that
+    \[
+        \det(A) = \sum_{\sigma \in S_n} \sgn(\sigma) A_{\sigma(1) 1} \cdots A_{\sigma(n) n}
+    ,\]
+    where \( A_{ij} \) is the \( (i, j) \)th entry in \( A \).
+\end{theorem}
+
+\begin{proof}
+    Let \( \vec{e}_1, \ldots, \vec{e}_n \in \F^n \) denote the standard basis.
+    Observe that by multilinearity, we have that
+    \[
+        \det(A) = \sum_{f : [n] \to [n]} \det(\vec{e}_{f(1)}, \ldots, \vec{e}_{f(n)}) A_{f(1) 1} \cdots A_{f(n) n}
+    ,\]
+    and since the determinant is alternating, we have that \( f \) must be
+    bijective, so \( f \) is a permutation. Since it takes \( \sgn(f) \) swaps
+    to swap the standard basis back to the identity, we have the desired identity.
+\end{proof}
+
+In this section, recall the word number puzzles and a bunch of the random
+combinatorics stuff that Pegden decided to put (lowkey barely linear algebra). I won't put it here, since it's not really crazy relevant if you agree that \( \sgn \) is well-defined.
+
+\subsection{Elementary Matrices, Transposes, and Properties of Determinants}
+
+\begin{definition}
+    Let \( A \in \F^{m \times n} \). We define the transpose of \( A \), \(
+    A^{T} \in \F^{n \times m} \), to be the matrix where \( A_{ij} =
+    (A^{T})_{ji} \).
+\end{definition}
+
+\begin{theorem}
+    Let \( A \in \F^{n \times n} \). We have that (since acting the row
+    operations on the right equates to column operations; indeed, observe that
+    \( E^T \) is an elementary row operation for any elementary row operation
+    \( E \))
+    \begin{enumerate}
+        \item \( \det(A E_{i,j}) = -\det(A) \), where \( E_{i, j} \) is an
+            elementary row operation matrix corresponding to swapping rows \( i
+            \) and \( j \).
+        \item \( \det(A E_{i, \alpha}) = \alpha \det(A) \), where \( E_{i,
+            \alpha} \) is the elementary row operation matrix corresponding to
+            multiplying row \( i \) by \( \alpha \).
+        \item \( \det(A E_{i, \alpha, j}) = \det(A) \), where \( E_{i, \alpha,
+            j} \) is the elementary row operation matrix corresponding to
+            subtracting \( \alpha \) times row \( i \) from row \( j \).
+    \end{enumerate}
+    Thus, for any elementary row operation \( E \), \( \det(AE) = \det(A) \det(E) \).
+\end{theorem}
+
+\begin{proof}
+    Inspection.
+\end{proof}
+
+\begin{theorem}
+    Let \( A \in \F^{n \times n} \). Then, \( \det(A) \ne 0 \) iff \( A \) invertible.
+\end{theorem}
+
+\begin{proof}
+    We shall first prove the forward direction. Indeed, if \( A \) is not
+    invertible, then by FTLA its columns are dependent. Thus, if we list the
+    columns of \( A \) as \( \vec{v}_1, \ldots, \vec{v}_n \), there exists some
+    \( \vec{v}_j \) such that
+    \[
+        \vec{v}_j = \sum_{i = 1}^{j - 1} \alpha_i \vec{v}_i
+    .\]
+    Thus, we have that
+    \begin{align*}
+        \det(A) &= \det(\vec{v}_1, \ldots, \vec{v}_j, \ldots, \vec{v}_n) \\
+        &= \det \left( \vec{v}_1, \ldots, \sum_{i=1}^{j - 1} \alpha_i \vec{v}_i, \ldots, \vec{v}_n \right) \\
+        &= \sum_{i = 1}^{j - 1} \alpha_i \det(\vec{v}_1, \ldots, \vec{v}_i, \ldots, \vec{v}_i \ldots, \vec{v}_n) \\
+        &= 0
+    .\end{align*}
+
+    Now, consider the backward direction. Suppose \( A \) is invertible. We
+    shall prove that \( \det(A) \ne 0 \). Since \( A \) is invertible, it can
+    be written as the product of elementary row operations \( E_1, \ldots,
+    E_\ell \). From the previous theorem and the fact that \( \RREF(A) = I_n \) and \( \det(I_n) = 1 \), it follows that
+    \[
+        \det(A) = \det(E_1) \dots \det(E_\ell)
+    .\]
+    Since \( \det(E_i) \ne 0 \) for all \( i \), we have that \( \det(A) \ne 0
+    \).
+\end{proof}
+
+\begin{theorem}
+    For \( A, B \in \F^{n \times n} \), \( \det(AB) = \det(A) \det(B) \).
+\end{theorem}
+
+\begin{proof}
+    When at least one of \( A, B \) is not invertible then \( AB \) is not
+    invertible so \( \det(AB) = \det(A)\det(B) = 0 \). Thus, we can assume both
+    are invertible. Thus, we can write out both as elementary row operations
+    and conclude.
+\end{proof}
+
+\begin{theorem}
+    For \( A \in \F^{n \times n}\), \( \det(A) = \det(A^T) \).
+\end{theorem}
+
+\begin{proof}
+    Either case on invertibility and argue via elementary row operations or
+    appeal to symmetry of the determinant sum.
+\end{proof}
+
+\begin{theorem}
+    Suppose \( A \in \F^{m \times n} \). then, \( \Rank(A) = \Rank(A^T) \).
+\end{theorem}
+
+\subsection{Cofactors}
+
+\begin{theorem}
+    Let \( B \in \F^{n \times n} \) and let \( B_{\overline{ij}} \in \F^{(n-1)
+    \times (n-1)} \) denote the matrix where the \( i \)th row and \( j \)th
+    column of \( B \) is removed. Then,
+    \[
+        \det(B) = \sum_{j = 1}^{n} (-1)^{j+1} b_{1j} \det(B_{\overline{1j}})
+    ,\]
+    where \( b_{ij} \) is the \( (i, j) \)th entry of \( B \).
+\end{theorem}
+
+\begin{proof}
+    Multilinearity in the first row.
+\end{proof}
+
+\begin{theorem}
+    More generally,
+    \[
+        \det(B) = \sum_{j = 1}^{n} (-1)^{i+j} b_{ij} \det(B_{\overline{ij}}) = \sum_{i = 1}^{n} (-1)^{i+j} b_{ij} \det(B_{\overline{ij}})
+    .\]
+\end{theorem}
+
+\begin{proof}
+    Same thing.
+\end{proof}
+
+\begin{definition}
+    Given \( B \in \F^{n \times n} \), define \( C_B \) to be the cofactor
+    matrix of \( B \) so that 
+    \[
+        (C_B)_{ij} = (-1)^{i+j} \det(B_{\overline{ij}})
+    .\]
+\end{definition}
+
+\begin{theorem}
+    Let \( B \in \F^{n \times n} \). Then,
+    \[
+        B C_B^{T} = \det(B) I_n
+    .\]
+\end{theorem}
+
+\begin{proof}
+    Let \( A = B C_B^T \), and consider \( A_{ij} \).
+    \begin{itemize}
+        \item \textbf{Case \( i = j \).} Then, \( A_{ij} = A_{ii} \) so
+            \begin{align*}
+                A_{ii} &= \sum_{k = 1}^{n} B_{ik} (C_B^T)_{ki} \\
+                &= \sum_{k = 1}^{n} B_{ik} (C_B)_{ik} \\
+                &= \sum_{k = 1}^{n} (-1)^{i+k} B_{ik} \det(B_{\overline{ik}}) \\
+                &= \det(B)
+            .\end{align*}
+        \item \textbf{Case \( i \ne j \)}. Then, we still have that
+            \[
+                A_{ij} = \sum_{k = 1}^{n} (-1)^{j + k} B_{ik} \det(B_{\overline{jk}})
+            ,\]
+            but this this is precisely equal to the determinant of a matrix in
+            which the \( j \)th row of \( B \) has been replaced with the \( i
+            \)th row of \( B \). Since \( i \ne j \), we may use the fact that
+            \( \det \) is alternating to conclude that the sum is \( 0 \).
+    \end{itemize}
+\end{proof}
