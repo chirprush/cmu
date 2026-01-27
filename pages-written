@@ -1,0 +1,7 @@
+#!/bin/bash
+
+PAGES=$(find ./fall2025/21242/assignments/bin/hw*.pdf ./fall2025/15151/assignments/bin/hw*.pdf ./spring2026/21269/assignments/bin/hw*.pdf | xargs -I {} qpdf --show-npages {} | paste -sd+ | bc)
+
+echo $PAGES
+
+sed -i "s/\*\*Total Math Pages Written:\*\* .*/**Total Math Pages Written:** $PAGES/" README.md

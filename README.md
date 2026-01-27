@@ -19,4 +19,5 @@ personal commentary sometime (when I get to it).
 - 15-251: Great Theoretical Ideas in Computer Science
 - 80-315: Logics for Knowledge and Belief
 - 76-101: Interpretation and Argument
-- 98-179: Introduction to Japanese Mahjong
+
+**Total Math Pages Written:** 276

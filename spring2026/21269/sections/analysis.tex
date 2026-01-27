@@ -1,0 +1,130 @@
+\Section{Basics of Analysis}{}
+
+\subsection{Metric Spaces}
+
+For now, we shall work over the real numbers unless otherwised specified. From context, we can 
+
+\begin{definition}
+    A pair \( (X, d) \) is called a \textit{metric space} (where \( X \)
+    a set and \( d : X \times X \to \R_{\ge 0} \)) if
+    \begin{enumerate}
+        \item \( d(x, y) = 0 \) iff \( x = y \),
+        \item \( d(x, y) = d(y, x) \), and
+        \item \( d(x, z) \le d(x, y) + d(y, z) \).
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}
+    A pair \( (X, \| \cdot \|) \) (where \( X \) is a set and \( \| \cdot \| :
+    X \times \R_{\ge 0} \)) is a \textit{normed space} if
+    \begin{enumerate}
+        \item \( X \) is a vector space (over the reals),
+        \item \( \| \alpha x \| = |\alpha| \| x \| \),
+        \item \( \| x + y \| \le \| x \| + \| y \| \), and
+        \item \( \| x \| = 0 \) iff \( x = 0_X \).
+    \end{enumerate}
+\end{definition}
+
+Note that every normed space \( (X, \| \cdot \|) \) induces a metric space \(
+(X, d) \) where \( d(x, y) := \| y - x \| \).
+
+\begin{example}
+    \( \R^d \) with the standard Euclidean metric forms a normed space (and
+    thus a metric space).
+\end{example}
+
+\begin{definition}
+    Pick \( p \in (0, \infty) \). Then, define the \textit{\( L^p \) norm},
+    \( | \cdot |_p \), of a vector
+    \( x \in \R^d \) via
+    \[
+        |x|_p := \left( \sum_{i = 1}^{d} |x_i|^p \right)^{1/p}
+    ,\]
+    and define the \textit{\( L^{\infty} \) norm}, \( |\cdot|_\infty \), via
+    \[
+        |x|_\infty := \max_{1 \le i \le d} |x_i|
+    .\]
+\end{definition}
+
+\begin{definition}
+    Let \( p, q \in [1, \infty] \). We say that \( p, q \) are \textit{Holder conjugates} if
+    \[
+        \frac{1}{p} + \frac{1}{q} = 1
+    .\]
+\end{definition}
+
+\begin{blackbox}
+\begin{lemma}
+    (Young's Inequality) Let \( a, b \ge 0 \). Then, if \( p, q \) are Holder conjugates,
+    \[
+        ab \le \frac{a^p}{p} + \frac{b^q}{q}
+    .\]
+\end{lemma}
+\end{blackbox}
+
+\begin{proof}
+    This trivially holds if any of \( x, y \) are zero, so assume \( a, b > 0
+    \). Observe that \( x \mapsto \log x \) is concave, so by Jensen's,
+    \[
+        \log \left( \frac{1}{p} a^p + \frac{1}{q} b^q \right) \ge \frac{1}{p} \log(a^p) + \frac{1}{q} \log(b^q) = \log(ab)
+    .\]
+\end{proof}
+
+The above lemma holds more generally, but we don't need this.
+
+\begin{blackbox}
+\begin{lemma}
+    (Holder's inequality) Let \( x, y \in \R^d \), and suppose \( p, q \) are
+    Holder conjugates. Then,
+    \[
+        |x \cdot y| \le |x|_p |y|_q
+    .\]
+\end{lemma}
+\end{blackbox}
+
+\begin{proof}
+    This holds trivially if any of \( x, y \) are the zero vector, so assume
+    this is not the case. Let \( u, v \) denote the vectors formed by taking
+    the absolute values of the coordinates of \( x, y \) respectively. It
+    follows from the triangle inequality that \( |x \cdot y| \le |u \cdot v|
+    \). Moreover, the respective norms of each vector are preserved. Then, we
+    have that
+    \[
+        \frac{u_i}{|u|_p} \cdot \frac{v_i}{|v|_q} \le \frac{|u_i|^p}{p|u|^p_p} + \frac{|v_i|^q}{q|v|^q_q}
+    .\]
+    Summing over \( i \in \{1, \ldots, d \} \) yields
+    \[
+        \frac{|u \cdot v|}{|u|_p |v|_q} \le \frac{1}{p} + \frac{1}{q} = 1
+    .\]
+    Thus, \( |u \cdot v| \le |u|_p |v|_q \), so \( |x \cdot y| \le |x|_p |y|_q \).
+\end{proof}
+
+\begin{blackbox}
+\begin{theorem}
+    \( (\R^d, |\cdot|_p) \) is a normed space iff \( p \ge 1 \).
+\end{theorem}
+\end{blackbox}
+
+\begin{proof}
+    It suffices to show that the triangle inequality holds (the other
+    conditions are relatively trivial). It suffices to assume \( x + y \) is
+    nonzero (otherwise the inequality follows trivially). Observe that for all
+    \( x, y, z \in \R^d \),
+    \[
+        |(x + y) \cdot z| \le |x \cdot z| + |y \cdot z| \le (|x|_p + |y|_p) |z|_q
+    ,\]
+    by triangle inequality and Young's inequality. Choose \( z \) such that \(
+    z_i = (x_i + y_i)^{p - 1} \). Then, we have that
+    \[
+        |(x + y) \cdot z| = |x + y|_p^p
+    .\]
+    Moreover, since \( 1/p + 1/q = 1 \), we have that
+    \[
+        |z|_q = |x + y|_p^{p/q} = |x + y|_p^{p - 1}
+    .\]
+    Combining these, we get that
+    \[
+        |x + y|_p^p \le (|x|_p + |y|_p) |x+y|_p^{p-1}
+    ,\]
+    and so \( |x + y|_p \le |x|_p + |y|_p \).
+\end{proof}
